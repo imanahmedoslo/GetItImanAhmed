@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      class="elementDiv firstInLine"
+      id="rad1kol1"
+      onclick="trykk(this, 'rad1kol2', 'rad2kol1')"
+    >
+      7
+    </div>
+    <div
+      class="elementDiv"
+      id="rad1kol2"
+      onclick="trykk(this, 'rad1kol1', 'rad2kol2', 'rad1kol3')"
+    ></div>
+    <div
+      class="elementDiv"
+      id="rad1kol3"
+      onclick="trykk(this, 'rad1kol2', 'rad2kol3')"
+    >
+      2
+    </div>
+    <div
+      class="elementDiv firstInLine"
+      id="rad2kol1"
+      onclick="trykk(this, 'rad1kol1', 'rad2kol2', 'rad3kol1')"
+    >
+      5
+    </div>
+    <div
+      class="elementDiv"
+      id="rad2kol2"
+      onclick="trykk(this, 'rad1kol2','rad3kol2', 'rad2kol3', 'rad2kol1')"
+    >
+      1
+    </div>
+    <div
+      class="elementDiv"
+      id="rad2kol3"
+      onclick="trykk(this, 'rad1kol3', 'rad2kol2', 'rad3kol3')"
+    >
+      3
+    </div>
+    <div
+      class="elementDiv firstInLine"
+      id="rad3kol1"
+      onclick="trykk(this, 'rad2kol1', 'rad3kol2')"
+    >
+      8
+    </div>
+    <div
+      class="elementDiv"
+      id="rad3kol2"
+      onclick="trykk(this, 'rad2kol2', 'rad3kol3', 'rad3kol1')"
+    >
+      4
+    </div>
+    <div
+      class="elementDiv"
+      id="rad3kol3"
+      onclick="trykk(this, 'rad2kol3', 'rad3kol2')"
+    >
+      6
+    </div>
+  </body>
+  <style>
+    .elementDiv {
+      border: green 2px solid;
+      margin: 10px;
+      padding: 10px;
+      background-color: lightblue;
+      height: 20px;
+      width: 20px;
+      float: left;
+    }
+    .firstInLine {
+      clear: left;
+    }
+  </style>
+</html>
+<script>
+  function trykk(tagElement, alt1, alt2, alt3, alt4) {
+    if (document.getElementById(alt1).innerText === "") {
+      document.getElementById(alt1).innerHTML = tagElement.innerHTML;
+      tagElement.innerHTML = "";
+    } else if (document.getElementById(alt2).innerText == "") {
+      document.getElementById(alt2).innerHTML = tagElement.innerHTML;
+      tagElement.innerHTML = "";
+    } else if (document.getElementById(alt3).innerText == "") {
+      document.getElementById(alt3).innerHTML = tagElement.innerHTML;
+      tagElement.innerHTML = "";
+    } else if (document.getElementById(alt4).innerText == "") {
+      document.getElementById(alt4).innerHTML = tagElement.innerHTML;
+      tagElement.innerHTML = "";
+    }
+    win();
+  }
+
+  function win() {
+    const array = ["1", "2", "3", "4", "5", "6", "7", "8", ""];
+    for (let i = 0; i < document.querySelectorAll("div").length; i++) {
+      if (document.querySelectorAll("div")[i].innerText !== array[i]) {
+        return;
+      }
+      if (i === array.length - 1) {
+        setTimeout(() => {
+          alert("Game Over, You Win!");
+        }, 500);
+        return;
+      }
+    }
+  }
+</script>
